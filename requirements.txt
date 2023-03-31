@@ -1,0 +1,7 @@
+pip==23.0.1
+setuptools==67.6.0
+flask == 2.2.3
+psycopg2 == 2.9.5
+SQLAlchemy == 2.0.7
+Flask-SQLAlchemy == 3.0.3
+Flask-Migrate == 4.0.4
