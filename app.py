@@ -1,10 +1,9 @@
 from flask import Flask
-
+from flask_sqlalchemy import SQLAlchemy
+from utils.conection import db
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+app.secret_key = 'mysecretkey'
 
-if __name__ == '__main__':
-    app.run(debug=True)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://restaurant:123456@password/api'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
