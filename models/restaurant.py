@@ -1,16 +1,20 @@
 from utils.conection import db
 
 
-class Name_Restaurant(db.Model):
+class Restaurant(db.Model):
     __tablename__ = 'restaurants'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    menus = db.relationship('Menu', backref='restaurant', lazy=True)
+    name = db.Column(db.String)
+    address = db.Column(db.String)
+    dishes = db.relationship("Dish", back_populates="restaurant")
 
-class Menu(db.Model):
-    __tablename__ = 'menus'
+
+class Dish(db.Model):
+    __tablename__ = 'dishes'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    cost = db.Column(db.Float, nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurant.id'), nullable=False)
+    name = db.Column(db.String)
+    description = db.Column(db.String)
+    cost = db.Column(db.Float)
+    price = db.Column(db.Float)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
+    restaurant = db.relationship("Restaurant", back_populates="dishes")
