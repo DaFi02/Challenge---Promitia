@@ -7,6 +7,7 @@ class Restaurant(db.Model):
     name = db.Column(db.String)
     dishes = db.relationship("Dish", back_populates="restaurant")
     
+    def 
 
 
 

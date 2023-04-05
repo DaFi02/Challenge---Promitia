@@ -5,7 +5,7 @@ from routes.restaurants import restaurants
 from utils.conection import db
 app = Flask(__name__)
 
-app.secret_key = 'mysecretkey'
+app.secret_key = 'e2c43954a7f94d259bf91820a8d6993a'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://restaurant:password@localhost/api'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
