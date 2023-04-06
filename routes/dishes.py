@@ -4,10 +4,11 @@ from models.restaurant import Dish
 
 dishes = Blueprint('dishes', __name__)
 
+
 @dishes.route('/dishes', methods=['GET'])
 def get_dishes():
-    
-    return jsonify({'dishes': 'get_dishes'})
+    dishes = Dish.query.all()
+    return jsonify({'dishes': [dish.to_JSON() for dish in dishes]})
 
 
 @dishes.route('/dishes', methods=['POST'])
@@ -24,3 +25,12 @@ def add_dish():
 
     return jsonify(new_dish.name)
 
+
+@dishes.route('/dishes/<int:restaurant_id>', methods=['GET'])
+def get_dish_of_restaurant(restaurant_id):
+    dish = Dish.query.filter_by(restaurant_id=restaurant_id)
+    if not dish:
+        return jsonify({'message': 'Dish not found'}), 404
+    for a in dish:
+        print(a.to_JSON())
+    return jsonify({'dishes': [dish.to_JSON() for dish in dish]})
