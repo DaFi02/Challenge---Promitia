@@ -45,3 +45,32 @@ def get_dish_of_restaurant(restaurant_id):
         return jsonify({'message': 'Dish not found'}), 404
     
     return jsonify({'dishes': [dish.to_JSON_to_resturant() for dish in dish]})
+
+
+@dishes.route('/dishes/<restaurant_id>/<int:dish_id>', methods=['PUT'])
+def update_dish(restaurant_id, dish_id):
+    dish = Dish.query.filter_by(id=dish_id, restaurant_id=restaurant_id).first()
+    if not dish:
+        return jsonify({'message': 'Dish not found'}), 404
+    
+    dish.name = request.json['name']
+    dish.description = request.json['description']
+    dish.cost = request.json['cost']
+    dish.price = request.json['price']
+    dish.day = str.lower(request.json['day'])
+    dish.restaurant_id = request.json['restaurant_id']
+
+    db.session.commit()
+
+    return jsonify({'message': 'Dish updated'})
+
+@dishes.route('/dishes/<restaurant_id>/<int:dish_id>', methods=['DELETE'])
+def delete_dish(restaurant_id, dish_id):
+    dish = Dish.query.filter_by(id=dish_id, restaurant_id=restaurant_id).first()
+    if not dish:
+        return jsonify({'message': 'Dish not found'}), 404
+    
+    db.session.delete(dish)
+    db.session.commit()
+
+    return jsonify({'message': 'Dish deleted'})
