@@ -4,18 +4,21 @@ from utils.conection import db
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
     id = db.Column(db.Integer, primary_key=True, index=True)
-    name = db.Column(db.String)
+    name = db.Column(db.String, unique=True)
+    password = db.Column(db.String(120))
     type = db.Column(db.String)
     dishes = db.relationship("Dish", back_populates="restaurant")
     
-    def __init__(self, name, type):
+    def __init__(self, name, password, type):
         self.name = name
+        self.password = password
         self.type = type
     
     def to_JSON(self):
         return {
             'id': self.id,
             'name': self.name,
+            'password': self.password,
             'type': self.type
         }        
     

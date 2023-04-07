@@ -5,5 +5,6 @@ psycopg2 == 2.9.5
 SQLAlchemy == 2.0.7
 Flask-SQLAlchemy == 3.0.3
 Flask-Migrate == 4.0.4
-uuid
-PyJWT
+uuid == 1.30
+PyJWT == 2.6.0
+flask-login == 0.6.2
