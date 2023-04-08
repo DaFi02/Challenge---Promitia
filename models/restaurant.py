@@ -7,6 +7,7 @@ class Restaurant(db.Model):
     name = db.Column(db.String, unique=True)
     password = db.Column(db.String(120))
     type = db.Column(db.String)
+    
     dishes = db.relationship("Dish", back_populates="restaurant")
     
     def __init__(self, name, password, type):
@@ -18,7 +19,6 @@ class Restaurant(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'password': self.password,
             'type': self.type
         }        
     
@@ -33,6 +33,7 @@ class Dish(db.Model):
     price = db.Column(db.Float)
     day = db.Column(db.String)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
+    
     restaurant = db.relationship("Restaurant", back_populates="dishes")
 
     def __init__(self, name, description, cost, price, day, restaurant_id):
