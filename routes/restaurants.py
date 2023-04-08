@@ -5,7 +5,6 @@ from models.restaurant import Restaurant
 from flask_login import login_user, logout_user, LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
-import functools
 
 import jwt
 
@@ -21,17 +20,6 @@ def get_restaurants():
     restaurants = Restaurant.query.all()
     return jsonify({'restaurants': [restaurant.to_JSON() for restaurant in restaurants]})
 
-
-@restaurants.route('/restaurants', methods=['POST'])
-def create_restaurant():
-    name = request.json['name']
-    type = request.json['type']
-    new_restaurant = Restaurant(name, type)
-
-    db.session.add(new_restaurant)
-    db.session.commit()
-
-    return jsonify(new_restaurant.name)
 
 
 @restaurants.route('/restaurants/<int:id>', methods=['GET'])

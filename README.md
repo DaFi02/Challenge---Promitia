@@ -1,29 +1,47 @@
 # Restaurant API
 
-### Technologies:
-- Flask
-- PostgreSQL
+This api is used to manage restaurants and their menus.
+Used techonolgies are: Python, Flask, POSTGRESQL
 
-Puedes usar otro cualquiera que desees extra.
+## Getting Started
+- Clone the repository
+- Install the requirements and Python 3.11.1
+- Activate the virtual environment
+- Install PostgreSQL and create a database with the name 'challenge' and a user with the name 'challenge' and password '123456'
+- Finally run the index.py file
 
-### Aceptances Criteria
+## Features
 
-#### Del lado del restaurant
+- Create a restaurant
+- Login to a restaurant
+- Update a restaurant
+- List all restaurants
+- List only one restaurant
+- Delete a restaurant
 
-1. Un restaurant puede registrarse, logearse y deslogearse.
-2. Puede anadir sus platos, actualizarlos, eliminarlos, leerlos, listarlos.
-3. Las imagenes de los platos deben ser tratadas como url.
-4. Encriptar los passwords.
-5. Pueda listar los platos del dia.
-6. Imaginen que cada plato tiene un stock infinito.
-7. Puede listar todo los platos que se han comprado, cuantos y cuanto dinero gano.
+- Create a dish
+- List all dishes
+- Add a dish to a restaurant
+- List dishes from a restaurant
+- Update a dish
+- Delete a dish
+- Add a dish to buy to a restaurant
+- Finally buy
 
-#### Del lado del comensal
-1. El usuario puede listar todos los restaurantes.
-2. Puede listar todos los platos del dia del restaurant que escoja.
-3. Puede poner el plato que desee en una cesta.
-4. Puede comprar toda la lista de los platos.
-5. Una vez comprado pierde su lista.
-6. No necesita login, ni registrarse.
+## Endpoints
+- GET /restaurants - List all restaurants
+- POST /register - Create a restaurant
+- GET /restaurants/<int:id> - List only one restaurant
+- DELETE /restaurants/<int:id> - Delete a restaurant
+- POST /login - Login to a restaurant
+- POST /logout - Logout to a restaurant
+- PATCH /restaurants/<int:id> - Update a restaurant
 
-Crear documentacion de la API creada.
+- GET /dishes - List all dishes
+- GET /dishes/<int:id> - List only one dish
+- POST /dishes - Create a dish
+- GET /dishes/<int:restaurant_id> - List dishes from a restaurant
+- PUT /dishes/<restaurant_id>/<int:dish_id> - Update a dish
+- DELETE /dishes/<restaurant_id>/<int:dish_id> - Delete a dish
+- POST /dishes/<int:restaurant_id>/<int:dish_id>/buy - Add a dish to buy to a restaurant
+- GET /dish/buy - Finally buy
