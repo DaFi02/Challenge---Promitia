@@ -18,8 +18,7 @@ class Restaurant(db.Model):
     def to_JSON(self):
         return {
             'id': self.id,
-            'name': self.name,
-            'type': self.type
+            'name': self.name
         }        
     
     
